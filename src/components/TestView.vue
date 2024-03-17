@@ -10,7 +10,6 @@
 <script>
 import { ref, computed, defineComponent } from "vue";
 import { useStore } from "vuex";
-// import { key } from "../store/index";
 
 export default defineComponent({
   setup() {
@@ -20,7 +19,6 @@ export default defineComponent({
     const totalWords = computed(() => store.getters.totalWords);
 
     function save() {
-      // store.commit("SAVE_WORDS", inputValue.value);
       store.dispatch("saveWord", inputValue.value);
     }
 
