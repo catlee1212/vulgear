@@ -1,10 +1,34 @@
 @import './base.css';
 
+:root {
+  --mainColor: rgb(105, 5, 105);
+}
+
 #app {
-  max-width: 1280px;
+  align-items: center;
+  max-width: 100vw;
   margin: 0 auto;
-  padding: 2rem;
   font-weight: normal;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.outerWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  padding: 20px 0px;
+}
+
+.innerWrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+  justify-content: space-between;
+  width: 80vw;
 }
 
 a,
