@@ -3,7 +3,9 @@
 import type { State } from ".";
 
 const totalWords = (state: State) => state.words.length;
+const isOpen = (state: State) => state.isOpen;
 
 export default {
-  totalWords
+  totalWords,
+  isOpen
 }
