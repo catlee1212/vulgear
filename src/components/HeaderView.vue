@@ -11,7 +11,6 @@
 <script>
 import { computed, defineComponent } from "vue";
 import { useStore } from "vuex";
-import MenuView from "./MenuView.vue";
 
 export default defineComponent({
   setup() {
@@ -24,7 +23,6 @@ export default defineComponent({
       isOpen: isOpen,
       menuItems: menuItems,
       toggleMenu: toggleMenu,
-      MenuView: MenuView,
     };
   },
 });
