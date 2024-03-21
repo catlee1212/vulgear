@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import MainView from "./components/MainView.vue";
-import HeaderView from "./components/HeaderView.vue";
+import MenuView from "./components/MenuView.vue";
 </script>
 
 <template>
-  <HeaderView />
   <MainView />
+  <MenuView />
 </template>
 
 <style scoped>
