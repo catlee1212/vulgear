@@ -1,33 +1,15 @@
 <template>
   <div class="wrapper">
-    <!-- {{ $store.state.title }}
-    <li v-for="(word, idx) in words" :key="idx">{{ word }}</li>
-    <input v-model="inputValue" @keypress.enter="save" />
-    <p>Total Words : {{ totalWords }}</p> -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import { ref, computed, defineComponent } from "vue";
-import { useStore } from "vuex";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   setup() {
-    const inputValue = ref("");
-    const store = useStore();
-    const words = computed(() => store.state.words);
-    const totalWords = computed(() => store.getters.totalWords);
-
-    function save() {
-      store.dispatch("saveWord", inputValue.value);
-    }
-
-    return {
-      words: words,
-      inputValue: inputValue,
-      totalWords: totalWords,
-      save: save,
-    };
+    return {};
   },
 });
 </script>
@@ -39,12 +21,5 @@ export default defineComponent({
   font-size: 15px;
   justify-content: center;
   align-items: center;
-}
-.wrapper button {
-  font-size: 20px;
-  background-color: #f0f;
-  padding: 10px 20px;
-  margin-top: 10px;
-  cursor: pointer;
 }
 </style>

@@ -6,7 +6,7 @@ import mutations from './mutations';
 export interface State {
   title: string
   words: Array<number | string>
-  menuItems: Array<string>
+  menuItems: { name: string, link: string }[],
   isOpen: boolean
 }
 
@@ -14,7 +14,11 @@ export const store = createStore<State>({
   state: {
     title: "Vuex Store",
     words: [],
-    menuItems: ['menu1', 'menu2', 'menu2'],
+    menuItems: [
+      { name: 'LockView', link: '/' },
+      { name: 'StatisticsView', link: '/stats' },
+      { name: 'UserConfigView', link: '/config' },
+      { name: 'SettingsView', link: '/settings' }],
     isOpen: false
   },
   actions,

@@ -1,7 +1,10 @@
 @import './base.css';
 
 :root {
-  --mainColor: rgb(105, 5, 105);
+  --mainColor: rgb(38, 38, 38);
+  --mainLinkColor: rgb(233, 233, 233);
+  --mainLinkColorHover: rgb(169, 156, 156);
+  --transitionDuration: 200ms;
 }
 
 #app {
@@ -31,29 +34,16 @@
   width: 80vw;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+li {
+  list-style-type: none;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+a {
+  color: var(--mainLinkColor);
+  cursor: pointer
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+a:hover {
+  color: var(--mainLinkColorHover);
+  transition: var(--transitionDuration);
 }

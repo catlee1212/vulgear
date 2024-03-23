@@ -1,9 +1,14 @@
 <template>
   <div class="outerWrapper header">
     <div class="innerWrapper">
-      <div v-for="(items, idx) in menuItems" :key="idx">
-        {{ items }}
-      </div>
+      <ul class="menu">
+        <RouterLink
+          v-for="(items, idx) in menuItems"
+          :key="idx"
+          :to="items.link"
+          >{{ items.name }}</RouterLink
+        >
+      </ul>
     </div>
   </div>
 </template>
@@ -36,5 +41,14 @@ export default defineComponent({
 .outerWrapper.header {
   position: fixed;
   bottom: 0;
+}
+
+.menu {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+  justify-content: space-between;
+  width: 100%;
 }
 </style>
