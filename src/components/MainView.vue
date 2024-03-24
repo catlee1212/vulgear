@@ -1,5 +1,7 @@
 <template>
   <div class="wrapper">
+    <h1>vulgear</h1>
+    <MenuView />
     <router-view></router-view>
   </div>
 </template>
@@ -9,7 +11,9 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   setup() {
-    return {};
+    return {
+      isLoggedin: false,
+    };
   },
 });
 </script>
