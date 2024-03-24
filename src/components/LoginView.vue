@@ -15,10 +15,13 @@
 import { defineComponent, ref } from "vue";
 import axios from "axios";
 import { useRouter, useRoute } from "vue-router";
+import { useStore } from "vuex";
 
 export default defineComponent({
   setup() {
     const router = useRouter();
+    const store = useStore();
+
     const email = ref("");
     const password = ref("");
 
@@ -33,6 +36,7 @@ export default defineComponent({
             let authToken = response.data.authentication.sessionToken;
             setAuthToken(authToken);
             router.push("/");
+            store.dispatch("saveUsername", response.data.username);
           }
         })
         .catch(function (error) {

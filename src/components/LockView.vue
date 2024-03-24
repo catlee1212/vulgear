@@ -1,13 +1,23 @@
 <template>
-  <h1>LockView</h1>
+  <div class="outerWrapper header">
+    <div class="innerWrapper">
+      <h2>welcome to vulgear, {{ username }}</h2>
+    </div>
+  </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   setup() {
-    return {};
+    const store = useStore();
+    const username = store.getters.username;
+
+    return {
+      username,
+    };
   },
 });
 </script>

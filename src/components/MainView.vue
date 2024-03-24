@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <h1>vulgear</h1>
+    <!-- <h1>vulgear</h1> -->
     <MenuView />
     <router-view></router-view>
   </div>

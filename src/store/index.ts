@@ -8,8 +8,7 @@ export interface State {
   words: Array<number | string>
   menuItems: { name: string, link: string }[],
   isOpen: boolean,
-  email: string,
-  password: string
+  username: string,
 }
 
 export const store = createStore<State>({
@@ -22,8 +21,7 @@ export const store = createStore<State>({
       { name: 'User', link: '/config' },
       { name: 'Settings', link: '/settings' }],
     isOpen: false,
-    email: '',
-    password: ''
+    username: 'godess',
   },
   actions,
   getters,

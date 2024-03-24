@@ -8,11 +8,15 @@ const SAVE_WORDS = (state: State, inputValue: string) => {
 }
 
 const TOGGLE_MENU = (state: State) => {
-  console.log('toggler', state.isOpen)
   state.isOpen = !state.isOpen;
+}
+
+const SAVE_USERNAME = (state: State, username: string) => {
+  state.username = username;
 }
 
 export default {
   SAVE_WORDS,
-  TOGGLE_MENU
+  TOGGLE_MENU,
+  SAVE_USERNAME
 };
