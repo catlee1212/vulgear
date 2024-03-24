@@ -1,7 +1,9 @@
 <template>
   <div class="outerWrapper header">
     <div class="innerWrapper">
-      <h2>welcome to vulgear, {{ username }}</h2>
+      <h2>
+        welcome to vulgear__ <i> {{ username }}</i>
+      </h2>
     </div>
   </div>
 </template>

@@ -5,6 +5,9 @@
   --mainLinkColor: rgb(233, 233, 233);
   --mainLinkColorHover: rgb(169, 156, 156);
   --transitionDuration: 200ms;
+  --buttonFontColor: rgb(205 165 205);
+  --buttonColor: rgb(98, 0, 98);
+  --buttonColorHover: rgb(75, 1, 75);
 }
 
 #app {
@@ -51,14 +54,29 @@ a:hover {
 }
 
 button {
-  background-color: rgb(98, 0, 98);
+  background-color: var(--buttonColor);
   padding: 10px 20px;
   font-size: 20px;
-  color: #131313;
+  color: var(--buttonFontColor);
   font-weight: bold;
   border: 0px;
   cursor: pointer;
   width: fit-content;
+  border-radius: 2px;
+}
+
+button:hover {
+  background-color: var(--buttonColorHover);
+  transition: var(--transitionDuration);
+}
+
+button a {
+  color: var(--buttonFontColor);
+  font-weight: bold;
+}
+
+button a:hover {
+  color: var(--buttonFontColor);
 }
 
 input {

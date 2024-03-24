@@ -8,9 +8,9 @@
           :to="items.link"
           >{{ items.name }}</router-link
         >
-        <button>
-          <router-link to="/login" @click="removeAuthToken">Logout</router-link>
-        </button>
+        <router-link to="/login" @click="removeAuthToken">
+          <button>Logout</button>
+        </router-link>
       </ul>
     </div>
   </div>
