@@ -9,6 +9,8 @@ export interface State {
   menuItems: { name: string, link: string }[],
   isOpen: boolean,
   username: string,
+  amountTampons: number,
+  amountPads: number
 }
 
 export const store = createStore<State>({
@@ -22,6 +24,8 @@ export const store = createStore<State>({
       { name: 'Settings', link: '/settings' }],
     isOpen: false,
     username: 'godess',
+    amountTampons: 100,
+    amountPads: 100
   },
   actions,
   getters,

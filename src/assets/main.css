@@ -6,8 +6,8 @@
   --mainLinkColorHover: rgb(169, 156, 156);
   --transitionDuration: 200ms;
   --buttonFontColor: rgb(205 165 205);
-  --buttonColor: rgb(98, 0, 98);
-  --buttonColorHover: rgb(75, 1, 75);
+  --buttonColor: #4b0610;
+  --buttonColorHover: #6b0815;
 }
 
 #app {

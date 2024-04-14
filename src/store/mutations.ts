@@ -15,8 +15,18 @@ const SAVE_USERNAME = (state: State, username: string) => {
   state.username = username;
 }
 
+const UPDATE_AMOUNT_TAMPONS = (state: State, amountTampons: number) => {
+  state.amountTampons = state.amountTampons - 1;
+}
+
+const UPDATE_AMOUNT_PADS = (state: State, amountPads: number) => {
+  state.amountPads = state.amountPads - 1;
+}
+
 export default {
   SAVE_WORDS,
   TOGGLE_MENU,
-  SAVE_USERNAME
+  SAVE_USERNAME,
+  UPDATE_AMOUNT_TAMPONS,
+  UPDATE_AMOUNT_PADS
 };

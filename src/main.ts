@@ -11,6 +11,7 @@ import StatisticsView from './components/StatisticsView.vue'
 import UserConfigView from './components/UserConfigView.vue'
 import SettingsView from './components/SettingsView.vue'
 import MenuView from './components/MenuView.vue'
+import CounterControl from './controls/CounterControl.vue'
 
 const app = createApp(App);
 
@@ -25,4 +26,6 @@ app
   .component('UserConfigView', UserConfigView)
   .component('SettingsView', SettingsView)
   .component('MenuView', MenuView)
+  .component('CounterControl', CounterControl)
+
   .mount('#app')
