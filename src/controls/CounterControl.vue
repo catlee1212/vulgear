@@ -10,7 +10,7 @@
     <div class="fillContent">
       <div>
         still in stock:
-        <h1>{{ amountStockDiplay }} {{ name }}</h1>
+        <h1>{{ fillPortion }} {{ name }}</h1>
       </div>
       <div>
         <button id="removeBackground">unlock</button>
@@ -35,7 +35,6 @@ export default defineComponent({
   setup(props) {
     const store = useStore();
     const id = props.id;
-    const amountStockDiplay = computed(() => props.amountStock);
     const name = props.type;
     const background = computed(() => "");
     const fillPortion = computed(() => props.amountStock);
@@ -81,7 +80,7 @@ export default defineComponent({
       name,
       isAnimated,
       background,
-      amountStockDiplay,
+      fillPortion,
       removeAmount,
       updateAmoutTampons,
       heightOfAnimationContainer,
