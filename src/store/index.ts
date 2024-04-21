@@ -9,6 +9,7 @@ export interface State {
   menuItems: { name: string, link: string }[],
   isOpen: boolean,
   username: string,
+  maxAmountStock: number,
   amountTampons: number,
   amountPads: number
 }
@@ -20,12 +21,13 @@ export const store = createStore<State>({
     menuItems: [
       { name: 'Home', link: '/' },
       { name: 'Statistics', link: '/stats' },
-      { name: 'User', link: '/config' },
-      { name: 'Settings', link: '/settings' }],
+      { name: 'User Settings', link: '/config' },
+      { name: 'App Settings', link: '/settings' }],
     isOpen: false,
     username: 'godess',
-    amountTampons: 100,
-    amountPads: 100
+    maxAmountStock: 30,
+    amountTampons: 20,
+    amountPads: 10
   },
   actions,
   getters,

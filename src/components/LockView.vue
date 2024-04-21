@@ -43,8 +43,4 @@ export default defineComponent({
   flex-direction: column;
   gap: 20px;
 }
-.counterControlWrapper {
-  display: flex;
-  gap: 20px;
-}
 </style>

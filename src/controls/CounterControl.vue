@@ -6,73 +6,85 @@
     :class="id"
     ref="some"
   >
-    <div class="fill"></div>
+    <div id="waveShape" class="fill" :class="{ isAnimated: isAnimated }"></div>
     <div class="fillContent">
       <div>
         still in stock:
         <h1>{{ amountStockDiplay }} {{ name }}</h1>
       </div>
-
       <div>
-        <button id="removeBackground" @click="waterAnimation">unlock</button>
+        <button id="removeBackground">unlock</button>
       </div>
     </div>
   </div>
 </template>
 
-<script>
+<script lang ="ts">
 import { defineComponent, computed, ref, onMounted } from "vue";
 import { useStore } from "vuex";
 
 export default defineComponent({
   props: {
+    maxAmountStock: Number,
     amountStock: Number,
     type: String,
     id: String,
+    tempHeight: Number,
   },
 
   setup(props) {
     const store = useStore();
+    const id = props.id;
     const amountStockDiplay = computed(() => props.amountStock);
     const name = props.type;
     const background = computed(() => "");
     const fillPortion = computed(() => props.amountStock);
-    let isAnimated = ref(false);
-    const id = props.id;
+    const maxAmountStock = store.getters.maxAmountStock;
+    const heightInPixel = 266;
+    const heightOfAnimationContainer = ref(266 + "px");
+    const isAnimated = ref(false);
 
     const updateAmoutTampons = () => {
-      store.dispatch("updateAmount", {
-        amountStock: props.amountStock,
-        type: props.type,
-      });
-    };
+      if (fillPortion.value > 0) {
+        store.dispatch("updateAmount", {
+          amountStock: props.amountStock,
+          type: props.type,
+        });
 
-    onMounted(() => {
-      let height = 266;
-
-      let amoutToRemove = height - (height / 100) * fillPortion.value;
-      document.querySelector("." + id + " .fill").style.transform =
-        "translate(0, " + amoutToRemove + "px)";
-    });
-
-    const waterAnimation = () => {
-      let height = 266;
-      let amoutToRemove = height - (height / 100) * fillPortion.value;
-      if (fillPortion.value < 101) {
-        document.querySelector("." + id + " .fill").style.transform =
-          "translate(0, " + amoutToRemove + "px)";
+        isAnimated.value = true;
+        removeAmount();
       } else {
+        // trigger errormessage here!
         console.log("is empty");
       }
     };
+
+    const removeAmount = (): void => {
+      let pixelByOneAmount = heightInPixel / maxAmountStock;
+      let pixelByAmount = fillPortion.value * pixelByOneAmount;
+      let amoutToRemove = heightInPixel - pixelByAmount;
+      heightOfAnimationContainer.value = pixelByAmount + "px";
+
+      document.querySelector<HTMLElement>("." + id + " .fill").style.transform =
+        "translate(0, " + amoutToRemove + "px)";
+
+      setTimeout(() => {
+        isAnimated.value = false;
+      }, 3000);
+    };
+
+    onMounted(() => {
+      removeAmount();
+    });
 
     return {
       name,
       isAnimated,
       background,
       amountStockDiplay,
-      waterAnimation,
+      removeAmount,
       updateAmoutTampons,
+      heightOfAnimationContainer,
     };
   },
 });
@@ -102,7 +114,9 @@ export default defineComponent({
   background-image: url("../assets/blood.svg");
   height: 100%;
   z-index: 1;
-  /* position: relative; */
+  position: relative;
+  width: 100%;
+  background-repeat: repeat-x;
 }
 
 .fillContent {
@@ -116,36 +130,26 @@ export default defineComponent({
   justify-content: space-around;
 }
 
-#fillWrapper .fill {
-  /* transform: translate(0, 0px); */
-  transition: all cubic-bezier(0.2, 0.6, 0.8, 0.4) 4s;
-}
-
 #fillWrapper #waveShape {
-  animation-name: waveAction;
+  width: 500px;
+  bottom: 0;
+  position: absolute;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-  animation-duration: 0.5s;
-  width: 300px;
-  height: 150px;
-  fill: #04acff;
+  animation-duration: 2s;
 }
 
-@keyframes fillAction {
-  0% {
-    transform: translate(0, 150px);
-  }
-  100% {
-    transform: translate(0, -5px);
-  }
+.isAnimated {
+  height: v-bind(heightOfAnimationContainer);
+  animation-name: waveAction;
 }
 
 @keyframes waveAction {
   0% {
-    transform: translate(-150px, 0);
+    transform: translateX(-150px);
   }
   100% {
-    transform: translate(0, 0);
+    transform: translateX(0);
   }
 }
 </style>

@@ -79,8 +79,15 @@ button a:hover {
   color: var(--buttonFontColor);
 }
 
-input {
+input[type=text] {
   height: 50px;
   padding: 20px;
   width: 100%;
+}
+
+/* counter control */
+.counterControlWrapper {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }
