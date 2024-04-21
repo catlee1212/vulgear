@@ -2,7 +2,7 @@
   <div
     id="fillWrapper"
     class="counterControl"
-    @click="updateAmoutTampons"
+    @click="updateAmoutInStock"
     :class="id"
     ref="some"
   >
@@ -36,14 +36,13 @@ export default defineComponent({
     const store = useStore();
     const id = props.id;
     const name = props.type;
-    const background = computed(() => "");
     const fillPortion = computed(() => props.amountStock);
     const maxAmountStock = store.getters.maxAmountStock;
     const heightInPixel = 266;
     const heightOfAnimationContainer = ref(266 + "px");
     const isAnimated = ref(false);
 
-    const updateAmoutTampons = () => {
+    const updateAmoutInStock = () => {
       if (fillPortion.value > 0) {
         store.dispatch("updateAmount", {
           amountStock: props.amountStock,
@@ -79,10 +78,8 @@ export default defineComponent({
     return {
       name,
       isAnimated,
-      background,
       fillPortion,
-      removeAmount,
-      updateAmoutTampons,
+      updateAmoutInStock,
       heightOfAnimationContainer,
     };
   },
