@@ -1,4 +1,10 @@
 export interface AmountStock {
-  amountStock: number,
+  amountInStock: number,
   type: string
+}
+
+export interface Product {
+  type: string,
+  isUsed: boolean,
+  amountInStock: number
 }
