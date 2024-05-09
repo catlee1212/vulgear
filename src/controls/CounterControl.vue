@@ -21,15 +21,13 @@
 
 <script lang ="ts">
 import { useStore } from "vuex";
-import { defineComponent, computed, ref, onMounted } from "vue";
+import { defineComponent, computed, ref, onMounted, PropType } from "vue";
 import type { Product } from "../assets/interfaces";
-import { PropType } from "vue";
 
 export default defineComponent({
   name: "CounterControl",
   props: {
     maxAmountStock: Number,
-    // amountStock: Number,
     type: String,
     id: String,
     usedProducts: Object as PropType<Product>,
