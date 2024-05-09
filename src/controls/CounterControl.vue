@@ -52,7 +52,7 @@ export default defineComponent({
     const updateAmoutInStock = () => {
       if (fillPortion.value > 0) {
         store.dispatch("updateAmount", {
-          amountInStock: usedProduct.amountInStock,
+          amountInStock: usedProduct.amountInStock - 1,
           type: usedProduct.type,
         });
 

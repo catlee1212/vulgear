@@ -1,5 +1,5 @@
 import type { Commit } from 'vuex';
-import type { AmountStock } from "../assets/interfaces";
+import type { AmountStock, Product } from "../assets/interfaces";
 
 // actions: can contain asyncronous operations
 const saveUsername = ({ commit }: { commit: Commit }, username: string) => {
@@ -26,7 +26,28 @@ const updateAmount = ({ commit }: { commit: Commit },
   }
 }
 
+const updateUsage = ({ commit }: { commit: Commit },
+  { isUsed, type }: Product) => {
+  switch (type) {
+    case 'Tampons':
+      commit('UPDATE_USAGE_TAMPONS', isUsed);
+      break;
+    case 'Pads':
+      commit('UPDATE_USAGE_PADS', isUsed);
+      break;
+    case 'Cups':
+      commit('UPDATE_USAGE_CUPS', isUsed);
+      break;
+    case 'Whipes':
+      commit('UPDATE_USAGE_WHIPES', isUsed);
+      break;
+    default:
+      console.log(`Sorry, error occured.`);
+  }
+}
+
 export default {
   saveUsername,
-  updateAmount
+  updateAmount,
+  updateUsage
 }
