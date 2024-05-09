@@ -3,10 +3,6 @@ import type { State } from ".";
 // can contain syncronous operations
 // commit updates mutation
 
-const SAVE_WORDS = (state: State, inputValue: string) => {
-  state.words.push(inputValue);
-}
-
 const TOGGLE_MENU = (state: State) => {
   state.isOpen = !state.isOpen;
 }
@@ -16,17 +12,26 @@ const SAVE_USERNAME = (state: State, username: string) => {
 }
 
 const UPDATE_AMOUNT_TAMPONS = (state: State, amountTampons: number) => {
-  state.amountTampons = state.amountTampons - 1;
+  state.usedProducts[0].amountInStock = amountTampons - 1;
 }
 
 const UPDATE_AMOUNT_PADS = (state: State, amountPads: number) => {
-  state.amountPads = state.amountPads - 1;
+  state.usedProducts[1].amountInStock = amountPads - 1;
+}
+
+const UPDATE_AMOUNT_CUPS = (state: State, amountCups: number) => {
+  state.usedProducts[2].amountInStock = amountCups - 1;
+}
+
+const UPDATE_AMOUNT_WHIPES = (state: State, amountWhipes: number) => {
+  state.usedProducts[3].amountInStock = amountWhipes - 1;
 }
 
 export default {
-  SAVE_WORDS,
   TOGGLE_MENU,
   SAVE_USERNAME,
   UPDATE_AMOUNT_TAMPONS,
-  UPDATE_AMOUNT_PADS
+  UPDATE_AMOUNT_PADS,
+  UPDATE_AMOUNT_CUPS,
+  UPDATE_AMOUNT_WHIPES
 };

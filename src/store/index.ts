@@ -2,22 +2,20 @@ import { createStore } from "vuex";
 import actions from './actions';
 import getters from './getters';
 import mutations from './mutations';
+import type { Product } from '../assets/interfaces';
 
 export interface State {
   title: string
-  words: Array<number | string>
   menuItems: { name: string, link: string }[],
   isOpen: boolean,
   username: string,
   maxAmountStock: number,
-  amountTampons: number,
-  amountPads: number
+  usedProducts: Product[]
 }
 
 export const store = createStore<State>({
   state: {
     title: 'Vuex Store',
-    words: [],
     menuItems: [
       { name: 'Home', link: '/' },
       { name: 'Statistics', link: '/stats' },
@@ -26,8 +24,13 @@ export const store = createStore<State>({
     isOpen: false,
     username: 'godess',
     maxAmountStock: 30,
-    amountTampons: 20,
-    amountPads: 10
+    usedProducts: [
+      { type: 'Tampons', isUsed: false, amountInStock: 20, },
+      { type: 'Pads', isUsed: true, amountInStock: 11, },
+      { type: 'Cups', isUsed: true, amountInStock: 12, },
+      { type: 'Whipes', isUsed: true, amountInStock: 10, },
+    ]
+
   },
   actions,
   getters,
