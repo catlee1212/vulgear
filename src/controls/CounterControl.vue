@@ -26,6 +26,7 @@ import type { Product } from "../assets/interfaces";
 import { PropType } from "vue";
 
 export default defineComponent({
+  name: "CounterControl",
   props: {
     maxAmountStock: Number,
     // amountStock: Number,
