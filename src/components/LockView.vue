@@ -8,13 +8,23 @@
         <div class="counterControlWrapper">
           <CounterControl
             id="first"
-            :amountStock="this.$store.getters.amountTampons"
-            type="tampons"
+            :usedProducts="this.$store.getters.usedProducts"
+            type="Tampons"
           />
           <CounterControl
             id="second"
-            :amountStock="this.$store.getters.amountPads"
-            type="pads"
+            :usedProducts="this.$store.getters.usedProducts"
+            type="Pads"
+          />
+          <CounterControl
+            id="third"
+            :usedProducts="this.$store.getters.usedProducts"
+            type="Cups"
+          />
+          <CounterControl
+            id="fourth"
+            :usedProducts="this.$store.getters.usedProducts"
+            type="Whipes"
           />
         </div>
       </div>
@@ -25,7 +35,7 @@
 <script>
 import { defineComponent } from "vue";
 import { useStore } from "vuex";
-
+// TODO: if isused true then display
 export default defineComponent({
   setup() {
     const store = useStore();

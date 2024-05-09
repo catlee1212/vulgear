@@ -20,23 +20,31 @@
 </template>
 
 <script lang ="ts">
-import { defineComponent, computed, ref, onMounted } from "vue";
 import { useStore } from "vuex";
+import { defineComponent, computed, ref, onMounted } from "vue";
+import type { Product } from "../assets/interfaces";
+import { PropType } from "vue";
 
 export default defineComponent({
   props: {
     maxAmountStock: Number,
-    amountStock: Number,
+    // amountStock: Number,
     type: String,
     id: String,
-    tempHeight: Number,
+    usedProducts: Object as PropType<Product>,
   },
 
   setup(props) {
+    let usedProduct: Product;
+    for (let product in props.usedProducts) {
+      if (props.usedProducts[product].type === props.type) {
+        usedProduct = props.usedProducts[product];
+      }
+    }
     const store = useStore();
     const id = props.id;
     const name = props.type;
-    const fillPortion = computed(() => props.amountStock);
+    const fillPortion = computed(() => usedProduct.amountInStock);
     const maxAmountStock = store.getters.maxAmountStock;
     const heightInPixel = 266;
     const heightOfAnimationContainer = ref(266 + "px");
@@ -45,14 +53,14 @@ export default defineComponent({
     const updateAmoutInStock = () => {
       if (fillPortion.value > 0) {
         store.dispatch("updateAmount", {
-          amountStock: props.amountStock,
-          type: props.type,
+          amountInStock: usedProduct.amountInStock,
+          type: usedProduct.type,
         });
 
         isAnimated.value = true;
         removeAmount();
       } else {
-        // trigger errormessage here!
+        // TODO: trigger errormessage here!
         console.log("is empty");
       }
     };
