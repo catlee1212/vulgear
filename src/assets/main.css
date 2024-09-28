@@ -149,3 +149,26 @@ ul.menu {
   padding: 20px 0px;
   width: var(--standardWidth);
 }
+
+/* settings control */
+
+.settingsWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.settingsWrapper label.settingsContainer {
+  display: flex;
+  align-items: center;
+}
+
+.innerSettings {
+  margin-top: 10vh;
+  padding: 20px;
+}
+
+.settingsContainer {
+  margin: 10px 0px;
+}

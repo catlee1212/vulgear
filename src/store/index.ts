@@ -25,9 +25,9 @@ export const store = createStore<State>({
     username: 'godess',
     maxAmountStock: 30,
     usedProducts: [
-      { type: 'Tampons', isUsed: false, amountInStock: 20, },
+      { type: 'Tampons', isUsed: false, amountInStock: 0, },
       { type: 'Pads', isUsed: true, amountInStock: 11, },
-      { type: 'Cups', isUsed: true, amountInStock: 12, },
+      { type: 'Cups', isUsed: false, amountInStock: 12, },
       { type: 'Whipes', isUsed: true, amountInStock: 10, },
     ]
 

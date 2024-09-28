@@ -12,6 +12,8 @@ import UserConfigView from './components/UserConfigView.vue'
 import SettingsView from './components/SettingsView.vue'
 import MenuView from './components/MenuView.vue'
 import CounterControl from './controls/CounterControl.vue'
+import CheckboxListControl from './controls/CheckboxListControl.vue'
+import InputListControl from './controls/InputListControl.vue'
 
 const app = createApp(App);
 
@@ -27,5 +29,6 @@ app
   .component('SettingsView', SettingsView)
   .component('MenuView', MenuView)
   .component('CounterControl', CounterControl)
-
+  .component('CheckboxListControl', CheckboxListControl)
+  .component('InputListControl', InputListControl)
   .mount('#app')
