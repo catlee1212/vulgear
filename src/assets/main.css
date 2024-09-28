@@ -8,6 +8,8 @@
   --buttonFontColor: rgb(205 165 205);
   --buttonColor: #4b0610;
   --buttonColorHover: #6b0815;
+  --warning: #c9820d;
+  --standardWidth: 80%;
 }
 
 #app {
@@ -20,22 +22,31 @@
   flex-direction: column;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .outerWrapper {
   align-items: center;
   display: flex;
   justify-content: center;
   width: 100vw;
-  padding: 20px 0px;
+  flex: 1;
+  flex-direction: column;
 }
 
 .innerWrapper {
   align-items: center;
   display: flex;
-  flex-direction: row;
   font-size: 15px;
-  justify-content: space-between;
   width: 80vw;
   flex-direction: column;
+  flex: 1;
 }
 
 li {
@@ -91,4 +102,50 @@ button a:hover {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+}
+
+.errorElement {
+  padding: 20px 0px;
+  background: var(--warning);
+  margin-top: 20px;
+  width: 100%;
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.innerErrorElement {
+  width: var(--standardWidth);
+}
+
+button:disabled,
+button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}
+
+.menuBottom {
+  background-color: var(--mainColor);
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+ul.menu {
+  padding: 20px 0px;
+  width: var(--standardWidth);
 }

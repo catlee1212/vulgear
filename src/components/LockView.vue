@@ -1,5 +1,5 @@
 <template>
-  <div class="outerWrapper header">
+  <div class="outerWrapper">
     <div class="innerWrapper">
       <div class="lockView">
         <h2>

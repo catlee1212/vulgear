@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
     <!-- <h1>vulgear</h1> -->
-    <MenuView />
     <router-view></router-view>
+    <MenuView />
   </div>
 </template>
 
@@ -19,11 +19,4 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  font-size: 15px;
-  justify-content: center;
-  align-items: center;
-}
 </style>

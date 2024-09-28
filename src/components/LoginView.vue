@@ -60,14 +60,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  font-size: 15px;
-  justify-content: center;
-  align-items: center;
-}
-
 .loginView {
   display: flex;
   justify-content: center;
