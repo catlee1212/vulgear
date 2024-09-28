@@ -49,7 +49,7 @@ export default defineComponent({
     const heightOfAnimationContainer = ref(266 + "px");
     const isAnimated = ref(false);
 
-    const updateAmoutInStock = () => {
+    const updateAmoutInStock = (): void => {
       if (fillPortion.value > 0) {
         store.dispatch("updateAmount", {
           amountInStock: usedProduct.amountInStock - 1,
