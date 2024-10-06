@@ -6,7 +6,6 @@
       <div class="settingsWrapper">
         <div class="innerSettings">
           <h2>products you use</h2>
-          {{ this.products }}
           <label
             class="settingsContainer"
             v-for="product in products"
