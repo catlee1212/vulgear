@@ -1,7 +1,7 @@
 <template>
   <div class="outerWrapper">
     <div class="innerWrapper">
-      <div class="lockView">
+      <div class="DashboardView">
         <h2>
           welcome to vulgear__ <i> {{ username }}</i>
         </h2>
@@ -9,22 +9,22 @@
           <CounterControl
             id="first"
             :usedProducts="this.$store.getters.usedProducts"
-            type="Tampons"
+            productType="Tampons"
           />
           <CounterControl
             id="second"
             :usedProducts="this.$store.getters.usedProducts"
-            type="Pads"
+            productType="Pads"
           />
           <CounterControl
             id="third"
             :usedProducts="this.$store.getters.usedProducts"
-            type="Cups"
+            productType="Cups"
           />
           <CounterControl
             id="fourth"
             :usedProducts="this.$store.getters.usedProducts"
-            type="Whipes"
+            productType="Whipes"
           />
         </div>
       </div>
@@ -48,7 +48,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.lockView {
+.DashboardView {
   display: flex;
   flex-direction: column;
   gap: 20px;

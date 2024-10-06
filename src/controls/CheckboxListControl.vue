@@ -25,12 +25,12 @@ export default defineComponent({
     let usedProduct = props.usedProduct;
 
     const isUsed = computed(() => usedProduct.isUsed);
-    const name = usedProduct.type;
+    const name = usedProduct.productType;
 
     const updateUsage = () => {
       store.dispatch("updateUsage", {
         isUsed: usedProduct.isUsed,
-        type: usedProduct.type,
+        productType: usedProduct.productType,
       });
     };
     return {
@@ -48,14 +48,14 @@ input[type="checkbox"].checkbox {
   margin-right: 10px;
   height: 25px;
   width: 25px;
-  accent-color: #850e1e;
+  accent-color: var(--buttonColor);
 }
 
 input[type="number"].checkbox {
   margin-right: 10px;
   background-color: transparent;
   color: var(--color-text);
-  border-bottom: 2px solid #850e1e;
+  border-bottom: 2px solid var(--buttonColor);
   width: fit-content;
   border-left: 0px;
   border-right: 0px;

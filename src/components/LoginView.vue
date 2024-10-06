@@ -1,12 +1,13 @@
 <template>
   <div class="wrapper">
+    <div class="loginImage"><img :src="vulgearImage" /></div>
     <div class="loginView">
       <h2>email</h2>
       <input v-model="email" placeholder="email" />
 
       <h2>password</h2>
       <input v-model="password" placeholder="password" />
-      <button @click="login">login</button>
+      <button @click="login" class="generalButton">login</button>
     </div>
   </div>
 </template>
@@ -16,6 +17,7 @@ import { defineComponent, ref } from "vue";
 import axios from "axios";
 import { useRouter, useRoute } from "vue-router";
 import { useStore } from "vuex";
+import vulgearImage from "../assets/vulgear.jpg";
 
 export default defineComponent({
   setup() {
@@ -37,16 +39,18 @@ export default defineComponent({
             setAuthToken(authToken);
             router.push("/");
             store.dispatch("saveUsername", response.data.username);
+            localStorage.setItem("userid", response.data._id);
           }
         })
         .catch(function (error) {
+          // errormessage
           console.log(error);
         });
     };
 
     const setAuthToken = (authToken) => {
-      // maybe change to cookie
-      localStorage.setItem("authToken", authToken);
+      let vulgearAuthCookie = "VULGEAR-AUTH=" + authToken;
+      document.cookie = vulgearAuthCookie;
     };
 
     return {
@@ -54,6 +58,7 @@ export default defineComponent({
       login,
       email,
       password,
+      vulgearImage,
     };
   },
 });
@@ -68,5 +73,17 @@ export default defineComponent({
   height: 100vh;
   flex-direction: column;
   gap: 20px;
+}
+
+.loginImage {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+.loginImage img {
+  width: 30%;
+  border-radius: 100%;
+  overflow: hidden;
 }
 </style>

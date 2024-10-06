@@ -13,7 +13,7 @@
         <h1>{{ fillPortion }} {{ name }}</h1>
       </div>
       <div>
-        <button id="removeBackground">unlock</button>
+        <button class="generalButton" id="removeBackground">unlock</button>
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@ export default defineComponent({
   name: "CounterControl",
   props: {
     maxAmountStock: Number,
-    type: String,
+    productType: String,
     id: String,
     usedProducts: Object as PropType<Product>,
   },
@@ -36,13 +36,13 @@ export default defineComponent({
   setup(props) {
     let usedProduct: Product;
     for (let product in props.usedProducts) {
-      if (props.usedProducts[product].type === props.type) {
+      if (props.usedProducts[product].productType === props.productType) {
         usedProduct = props.usedProducts[product];
       }
     }
     const store = useStore();
     const id = props.id;
-    const name = props.type;
+    const name = props.productType;
     const fillPortion = computed(() => usedProduct.amountInStock);
     const maxAmountStock = store.getters.maxAmountStock;
     const heightInPixel = 266;
@@ -53,7 +53,7 @@ export default defineComponent({
       if (fillPortion.value > 0) {
         store.dispatch("updateAmount", {
           amountInStock: usedProduct.amountInStock - 1,
-          type: usedProduct.type,
+          productType: usedProduct.productType,
         });
 
         isAnimated.value = true;
@@ -95,14 +95,14 @@ export default defineComponent({
 
 <style scoped>
 .counterControl {
-  border-radius: 5px;
+  border-radius: 100%;
   cursor: pointer;
   width: 30vh;
   min-height: 30vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 5px solid #850e1e;
+  border: 2px solid var(--buttonColor);
   position: relative;
 }
 
@@ -120,17 +120,6 @@ export default defineComponent({
   position: relative;
   width: 100%;
   background-repeat: repeat-x;
-}
-
-.fillContent {
-  z-index: 1;
-  position: absolute;
-  padding: 20px;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
 }
 
 #fillWrapper #waveShape {

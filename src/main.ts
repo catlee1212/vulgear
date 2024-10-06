@@ -6,7 +6,7 @@ import router from './router/router';
 import axios from 'axios';
 import LoginView from './components/LoginView.vue'
 import MainView from './components/MainView.vue'
-import LockView from './components/LockView.vue'
+import DashboardView from './components/DashboardView.vue'
 import StatisticsView from './components/StatisticsView.vue'
 import UserConfigView from './components/UserConfigView.vue'
 import SettingsView from './components/SettingsView.vue'
@@ -23,7 +23,7 @@ app
   .use(axios)
   .component('LoginView', LoginView)
   .component('MainView', MainView)
-  .component('LockView', LockView)
+  .component('DashboardView', DashboardView)
   .component('StatisticsView', StatisticsView)
   .component('UserConfigView', UserConfigView)
   .component('SettingsView', SettingsView)

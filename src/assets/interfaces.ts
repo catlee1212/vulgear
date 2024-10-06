@@ -1,11 +1,11 @@
 export interface AmountStock {
   amountInStock: number,
-  type: string
+  productType: string
 }
 
 // TODO: is amountinstock really optional?
 export interface Product {
-  type: string,
+  productType: string,
   isUsed: boolean,
   amountInStock?: number
 }

@@ -6,7 +6,7 @@
     @change="updateAmoutInStock"
     @blur="test"
   />
-  <span class="checkmark">{{ usedProduct.type }}</span>
+  <span class="checkmark">{{ usedProduct.productType }}</span>
 </template>
 
 <script lang ="ts">
@@ -33,7 +33,7 @@ export default defineComponent({
       if (updatedAmount < maxAmountStock) {
         store.dispatch("updateAmount", {
           amountInStock: updatedAmount,
-          type: usedProduct.type,
+          productType: usedProduct.productType,
         });
         emit("fireErrorMessage", false);
       } else {
@@ -54,14 +54,14 @@ input[type="checkbox"].input {
   margin-right: 10px;
   height: 25px;
   width: 25px;
-  accent-color: #850e1e;
+  accent-color: var(--buttonColor);
 }
 
 input[type="number"].input {
   margin-right: 10px;
   background-color: transparent;
-  color: var(--color-text);
-  border-bottom: 2px solid #850e1e;
+  color: #fff;
+  border-bottom: 2px solid var(--buttonColor);
   width: fit-content;
   border-left: 0px;
   border-right: 0px;

@@ -2,13 +2,15 @@
   <div class="menuBottom">
     <div class="innerWrapper">
       <ul class="menu">
+        <img :src="vulgear2" class="logoVulgear" />
+
         <router-link
           v-for="(items, idx) in menuItems"
           :key="idx"
           :to="items.link"
           >{{ items.name }}</router-link
         >
-        <router-link to="/login" @click="removeAuthToken">
+        <router-link to="/login" @click="removeAuthToken" class="logout">
           <button>Logout</button>
         </router-link>
       </ul>
@@ -20,6 +22,7 @@
 import { computed, defineComponent } from "vue";
 import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
+import vulgear2 from "../assets/vulgear.jpg";
 
 export default defineComponent({
   setup() {
@@ -30,7 +33,10 @@ export default defineComponent({
     const toggleMenu = () => store.commit("TOGGLE_MENU", isOpen);
 
     const removeAuthToken = () => {
-      localStorage.removeItem("authToken");
+      var now = new Date();
+      let tempCookie = document.cookie;
+      document.cookie =
+        "VULGEAR-AUTH=" + tempCookie + ";expires=" + now.toUTCString() + ";";
     };
 
     return {
@@ -38,6 +44,7 @@ export default defineComponent({
       menuItems: menuItems,
       toggleMenu: toggleMenu,
       removeAuthToken,
+      vulgear2,
     };
   },
 });
