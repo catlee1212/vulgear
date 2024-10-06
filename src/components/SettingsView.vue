@@ -60,6 +60,7 @@ import axios from "axios";
 import { computed, defineComponent, PropType, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
+import { onBeforeRouteLeave, onBeforeRouteUpdate } from "vue-router";
 
 import type { Product } from "../assets/interfaces";
 
@@ -69,6 +70,14 @@ export default defineComponent({
     usedProducts: Object as PropType<Product>,
   },
   setup() {
+    onBeforeRouteLeave((to, from) => {
+      const answer = window.confirm(
+        "Do you really want to leave? you have unsaved changes!"
+      );
+      // cancel the navigation and stay on the same page
+      if (!answer) return false;
+    });
+
     const store = useStore();
     const products = computed(() => store.getters.usedProducts);
     const amount = ref(0);
