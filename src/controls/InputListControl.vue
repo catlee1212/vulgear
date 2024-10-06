@@ -30,7 +30,7 @@ export default defineComponent({
     const updateAmoutInStock = (event: Event): void => {
       let updatedAmount = parseInt((event.target as HTMLInputElement).value);
 
-      if (updatedAmount < maxAmountStock) {
+      if (updatedAmount <= maxAmountStock) {
         store.dispatch("updateAmount", {
           amountInStock: updatedAmount,
           productType: usedProduct.productType,
