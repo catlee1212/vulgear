@@ -1,5 +1,5 @@
 import { createMemoryHistory, createRouter } from 'vue-router';
-import LockView from '../components/LockView.vue'
+import DashboardView from '../components/DashboardView.vue'
 import StatisticsView from '../components/StatisticsView.vue'
 import UserConfigView from '../components/UserConfigView.vue'
 import SettingsView from '../components/SettingsView.vue'
@@ -16,7 +16,7 @@ const routes = [
     component: MainView,
     meta: { requiresAuth: true },
     children: [
-      { path: '', component: LockView, meta: { requiresAuth: true }, },
+      { path: '', component: DashboardView, meta: { requiresAuth: true }, },
       { path: '/stats', component: StatisticsView, meta: { requiresAuth: true }, },
       { path: '/config', component: UserConfigView, meta: { requiresAuth: true }, },
       { path: '/settings', component: SettingsView, meta: { requiresAuth: true }, },
@@ -30,9 +30,8 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log('called')
   if (to.meta.requiresAuth) {
-    const authToken = localStorage.getItem('authToken');
+    const authToken = document.cookie;
 
     if (authToken) {
       // User is authenticated - proceed

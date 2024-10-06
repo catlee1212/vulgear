@@ -6,9 +6,13 @@ const saveUsername = ({ commit }: { commit: Commit }, username: string) => {
   commit('SAVE_USERNAME', username);
 }
 
+const saveUserId = ({ commit }: { commit: Commit }, userId: string) => {
+  commit('SAVE_USERID', userId);
+}
+
 const updateAmount = ({ commit }: { commit: Commit },
-  { amountInStock, type }: AmountStock) => {
-  switch (type) {
+  { amountInStock, productType }: AmountStock) => {
+  switch (productType) {
     case 'Tampons':
       commit('UPDATE_AMOUNT_TAMPONS', amountInStock);
       break;
@@ -27,8 +31,8 @@ const updateAmount = ({ commit }: { commit: Commit },
 }
 
 const updateUsage = ({ commit }: { commit: Commit },
-  { isUsed, type }: Product) => {
-  switch (type) {
+  { isUsed, productType }: Product) => {
+  switch (productType) {
     case 'Tampons':
       commit('UPDATE_USAGE_TAMPONS', isUsed);
       break;
@@ -49,5 +53,6 @@ const updateUsage = ({ commit }: { commit: Commit },
 export default {
   saveUsername,
   updateAmount,
-  updateUsage
+  updateUsage,
+  saveUserId
 }

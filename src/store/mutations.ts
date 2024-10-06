@@ -11,6 +11,10 @@ const SAVE_USERNAME = (state: State, username: string) => {
   state.username = username;
 }
 
+const SAVE_USERID = (state: State, userid: string) => {
+  state.userid = userid;
+}
+
 //////////////////////// AMOUNT 
 
 const UPDATE_AMOUNT_TAMPONS = (state: State, amountTampons: number) => {
@@ -57,5 +61,6 @@ export default {
   UPDATE_USAGE_TAMPONS,
   UPDATE_USAGE_PADS,
   UPDATE_USAGE_CUPS,
-  UPDATE_USAGE_WHIPES
+  UPDATE_USAGE_WHIPES,
+  SAVE_USERID
 };

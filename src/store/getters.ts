@@ -6,10 +6,12 @@ const isOpen = (state: State) => state.isOpen;
 const username = (state: State) => state.username;
 const maxAmountStock = (state: State) => state.maxAmountStock;
 const usedProducts = (state: State) => state.usedProducts;
+const userid = (state: State) => state.userid;
 
 export default {
   isOpen,
   username,
   maxAmountStock,
-  usedProducts
+  usedProducts,
+  userid
 }
