@@ -39,6 +39,7 @@ export default defineComponent({
             setAuthToken(authToken);
             router.push("/");
             store.dispatch("saveUsername", response.data.username);
+            store.dispatch("updateUsedProducts", response.data.usedProducts);
             localStorage.setItem("userid", response.data._id);
           }
         })

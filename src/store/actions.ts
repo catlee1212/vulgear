@@ -10,6 +10,11 @@ const saveUserId = ({ commit }: { commit: Commit }, userId: string) => {
   commit('SAVE_USERID', userId);
 }
 
+const updateUsedProducts = ({ commit }: { commit: Commit }, usedProducts: string) => {
+  console.log(usedProducts)
+  commit('UPDATE_USED_PRODUCTS', usedProducts);
+}
+
 const updateAmount = ({ commit }: { commit: Commit },
   { amountInStock, productType }: AmountStock) => {
   switch (productType) {
@@ -51,8 +56,9 @@ const updateUsage = ({ commit }: { commit: Commit },
 }
 
 export default {
+  saveUserId,
   saveUsername,
   updateAmount,
   updateUsage,
-  saveUserId
+  updateUsedProducts
 }

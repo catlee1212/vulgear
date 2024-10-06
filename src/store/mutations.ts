@@ -1,3 +1,4 @@
+import type { Product } from "@/assets/interfaces";
 import type { State } from ".";
 // mutations: function where we change values of states
 // can contain syncronous operations
@@ -51,9 +52,16 @@ const UPDATE_USAGE_WHIPES = (state: State, isUsed: boolean) => {
   state.usedProducts[3].isUsed = !isUsed;
 }
 
+//////////////////////// WHOLE PRODUCT
+
+const UPDATE_USED_PRODUCTS = (state: State, usedProducts: Product[]) => {
+  state.usedProducts = usedProducts;
+}
+
 export default {
   TOGGLE_MENU,
   SAVE_USERNAME,
+  SAVE_USERID,
   UPDATE_AMOUNT_TAMPONS,
   UPDATE_AMOUNT_PADS,
   UPDATE_AMOUNT_CUPS,
@@ -62,5 +70,5 @@ export default {
   UPDATE_USAGE_PADS,
   UPDATE_USAGE_CUPS,
   UPDATE_USAGE_WHIPES,
-  SAVE_USERID
+  UPDATE_USED_PRODUCTS
 };
