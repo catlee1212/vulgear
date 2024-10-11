@@ -6,7 +6,7 @@
       <input v-model="email" placeholder="email" />
 
       <h2>password</h2>
-      <input v-model="password" placeholder="password" />
+      <input type="password" v-model="password" placeholder="password" />
       <button @click="login" class="generalButton">login</button>
     </div>
   </div>
@@ -71,9 +71,7 @@ export default defineComponent({
   justify-content: center;
   align-items: baseline;
   width: 50vw;
-  height: 100vh;
   flex-direction: column;
-  gap: 20px;
 }
 
 .loginImage {
