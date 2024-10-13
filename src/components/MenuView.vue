@@ -11,7 +11,7 @@
           >{{ items.name }}</router-link
         >
         <router-link to="/login" @click="removeAuthToken" class="logout">
-          <button>Logout</button>
+          <button class="logoutButton">Logout</button>
         </router-link>
       </ul>
     </div>

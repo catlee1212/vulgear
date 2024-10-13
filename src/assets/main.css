@@ -14,6 +14,9 @@
   --warning: #c9820d;
   --standardWidth: 80%;
   --darkBackground: rgb(23 23 23);
+  --overlayColor: #373636f5;
+  --subButtonColor: #adadad;
+  --subButtonColorHover: #5c5c5c;
 }
 
 #app {
@@ -80,12 +83,37 @@ a:hover {
   padding: 10px 20px;
   font-size: 20px;
   color: var(--buttonFontColor);
-  font-weight: bold;
   border: 0px;
   cursor: pointer;
   width: fit-content;
-  border-radius: 2px;
   margin: 20px 0px;
+}
+
+.generalButton.dark {
+  background-color: #181818;
+  padding: 10px 20px;
+  font-size: 20px;
+  color: rgb(159 159 159);
+  border: 0px;
+  cursor: pointer;
+  width: fit-content;
+  align-items: center;
+  box-shadow: 0px 1px 74px #c32921;
+}
+
+.generalButton.sub {
+
+  background-color: var(--subButtonColor);
+}
+
+.generalButton.sub:hover {
+  background-color: var(--subButtonColorHover);
+  transition: var(--transitionDuration);
+}
+
+.logoutButton {
+  margin: 0px;
+  border-radius: 0px;
 }
 
 .logout {
@@ -238,16 +266,23 @@ ul.menu a:not(.logout) {
 }
 
 
-.fillContent button {
-  background-color: #181818;
-  padding: 10px 20px;
-  font-size: 20px;
-  color: rgb(159 159 159);
-  font-weight: bold;
-  border: 0px;
-  cursor: pointer;
-  width: fit-content;
-  border-radius: 2px;
+
+
+
+/* MODAL */
+
+.changesModal {
+  display: flex;
+  background-color: var(--overlayColor);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  box-shadow: 0px 1px 74px #c32921;
+}
+
+.buttonWrapper {
+  display: flex;
+  gap: 20px;
 }

@@ -13,7 +13,7 @@
         <h1>{{ fillPortion }} {{ name }}</h1>
       </div>
       <div>
-        <button class="generalButton" id="removeBackground">unlock</button>
+        <button class="generalButton dark" id="removeBackground">unlock</button>
       </div>
     </div>
   </div>
