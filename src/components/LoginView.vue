@@ -35,12 +35,12 @@ export default defineComponent({
         })
         .then(function (response) {
           if (response.status === 200) {
-            let authToken = response.data.authentication.sessionToken;
+            let authToken = response.data.authentication;
             setAuthToken(authToken);
             router.push("/");
             store.dispatch("saveUsername", response.data.username);
             store.dispatch("updateUsedProducts", response.data.usedProducts);
-            localStorage.setItem("userid", response.data._id);
+            localStorage.setItem("userid", response.data.id);
           }
         })
         .catch(function (error) {
