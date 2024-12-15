@@ -138,11 +138,10 @@ export default defineComponent({
     const whipesAreUsed = computed(() => store.getters.usedProducts[3].isUsed);
 
     const saveSettings = async () => {
-      const baseURL = "http://localhost:8080";
       const userId = localStorage.getItem("userid");
       axios
         .patch(
-          baseURL + "/products/" + userId,
+          import.meta.env.VITE_API_URL + "/products/" + userId,
           { usedProducts: _tempProducts },
           { withCredentials: true }
         )

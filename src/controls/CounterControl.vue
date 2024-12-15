@@ -67,7 +67,6 @@ export default defineComponent({
     };
 
     const saveSettings = async () => {
-      const baseURL = "http://localhost:8080";
       const userId = localStorage.getItem("userid");
       const usedProducts = computed(() => store.getters.usedProducts);
       let _tempProducts = usedProducts.value;
@@ -80,7 +79,7 @@ export default defineComponent({
 
       axios
         .patch(
-          baseURL + "/products/" + userId,
+          import.meta.env.VITE_API_URL + "/products/" + userId,
           { usedProducts: _tempProducts },
           { withCredentials: true }
         )

@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script>
+<script lang ="ts">
 import { defineComponent, ref } from "vue";
 import axios from "axios";
 import { useRouter, useRoute } from "vue-router";
@@ -26,10 +26,9 @@ export default defineComponent({
 
     const email = ref("");
     const password = ref("");
-
     const login = () => {
       axios
-        .post("http://localhost:8080/auth/login", {
+        .post(import.meta.env.VITE_API_URL + "/auth/login", {
           email: email.value,
           password: password.value,
         })

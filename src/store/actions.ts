@@ -6,10 +6,9 @@ import axios from "axios";
 const fetchConfig = async ({ commit }: { commit: Commit }) => {
   console.log("fetching");
 
-  const baseURL = "http://localhost:8080";
   const userId = localStorage.getItem("userid");
   await axios
-    .get(baseURL + "/user/" + userId, { withCredentials: true })
+    .get(import.meta.env.VITE_API_URL + "/user/" + userId, { withCredentials: true })
     .then(function (response) {
       if (response.status === 200) {
         commit('SET_CONFIG', response.data);
