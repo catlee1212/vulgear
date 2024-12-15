@@ -1,7 +1,27 @@
 import type { Commit } from 'vuex';
 import type { AmountStock, Product } from "../assets/interfaces";
+import axios from "axios";
 
 // actions: can contain asyncronous operations
+const fetchConfig = async ({ commit }: { commit: Commit }) => {
+  console.log("fetching");
+
+  const baseURL = "http://localhost:8080";
+  const userId = localStorage.getItem("userid");
+  await axios
+    .get(baseURL + "/user/" + userId, { withCredentials: true })
+    .then(function (response) {
+      if (response.status === 200) {
+        commit('SET_CONFIG', response.data);
+        commit('UPDATE_USED_PRODUCTS', response.data.usedProducts);
+      }
+    })
+    .catch(function (error) {
+      // Errormessage
+      console.log(error);
+    });
+}
+
 const saveUsername = ({ commit }: { commit: Commit }, username: string) => {
   commit('SAVE_USERNAME', username);
 }
@@ -17,6 +37,9 @@ const updateUsedProducts = ({ commit }: { commit: Commit }, usedProducts: string
 
 const updateAmount = ({ commit }: { commit: Commit },
   { amountInStock, productType }: AmountStock) => {
+
+  commit('FIRE_HAS_CHANGES', true);
+
   switch (productType) {
     case 'Tampons':
       commit('UPDATE_AMOUNT_TAMPONS', amountInStock);
@@ -37,6 +60,8 @@ const updateAmount = ({ commit }: { commit: Commit },
 
 const updateUsage = ({ commit }: { commit: Commit },
   { isUsed, productType }: Product) => {
+  commit('FIRE_HAS_CHANGES', true);
+
   switch (productType) {
     case 'Tampons':
       commit('UPDATE_USAGE_TAMPONS', isUsed);
@@ -55,10 +80,17 @@ const updateUsage = ({ commit }: { commit: Commit },
   }
 }
 
+const hasChanges = ({ commit }: { commit: Commit }, hasChanges: boolean) => {
+  console.log(hasChanges)
+  commit('FIRE_HAS_CHANGES', hasChanges);
+}
+
 export default {
   saveUserId,
   saveUsername,
   updateAmount,
   updateUsage,
-  updateUsedProducts
+  fetchConfig,
+  updateUsedProducts,
+  hasChanges
 }

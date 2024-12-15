@@ -23,6 +23,7 @@
 import { useStore } from "vuex";
 import { defineComponent, computed, ref, onMounted, PropType } from "vue";
 import type { Product } from "../assets/interfaces";
+import axios from "axios";
 
 export default defineComponent({
   name: "CounterControl",
@@ -56,12 +57,43 @@ export default defineComponent({
           productType: usedProduct.productType,
         });
 
+        saveSettings();
         isAnimated.value = true;
         removeAmount();
       } else {
         // TODO: trigger errormessage here!
         console.log("is empty");
       }
+    };
+
+    const saveSettings = async () => {
+      const baseURL = "http://localhost:8080";
+      const userId = localStorage.getItem("userid");
+      const usedProducts = computed(() => store.getters.usedProducts);
+      let _tempProducts = usedProducts.value;
+
+      for (const product in _tempProducts) {
+        if (_tempProducts[product].productType === usedProduct.productType) {
+          _tempProducts[product].amountInStock = usedProduct.amountInStock;
+        }
+      }
+
+      axios
+        .patch(
+          baseURL + "/products/" + userId,
+          { usedProducts: _tempProducts },
+          { withCredentials: true }
+        )
+        .then(function (response) {
+          if (response.status === 200) {
+            // do something here
+            store.dispatch("updateUsedProducts", _tempProducts);
+          }
+        })
+        .catch(function (error) {
+          // Errormessage
+          console.log(error);
+        });
     };
 
     const removeAmount = (): void => {

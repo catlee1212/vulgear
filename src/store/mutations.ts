@@ -4,6 +4,10 @@ import type { State } from ".";
 // can contain syncronous operations
 // commit updates mutation
 
+const SET_CONFIG = (state: State, config: []) => {
+  state.config = config;
+}
+
 const TOGGLE_MENU = (state: State) => {
   state.isOpen = !state.isOpen;
 }
@@ -58,7 +62,14 @@ const UPDATE_USED_PRODUCTS = (state: State, usedProducts: Product[]) => {
   state.usedProducts = usedProducts;
 }
 
+//////////////////////// EVENTS
+
+const FIRE_HAS_CHANGES = (state: State, hasChanges: Boolean) => {
+  state.fireHasChanges = hasChanges;
+}
+
 export default {
+  SET_CONFIG,
   TOGGLE_MENU,
   SAVE_USERNAME,
   SAVE_USERID,
@@ -70,5 +81,6 @@ export default {
   UPDATE_USAGE_PADS,
   UPDATE_USAGE_CUPS,
   UPDATE_USAGE_WHIPES,
-  UPDATE_USED_PRODUCTS
+  UPDATE_USED_PRODUCTS,
+  FIRE_HAS_CHANGES
 };

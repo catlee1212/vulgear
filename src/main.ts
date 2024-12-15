@@ -14,6 +14,8 @@ import MenuView from './components/MenuView.vue'
 import CounterControl from './controls/CounterControl.vue'
 import CheckboxListControl from './controls/CheckboxListControl.vue'
 import InputListControl from './controls/InputListControl.vue'
+import ProductUsage from './controls/ProductUsage.vue'
+import ProductAmount from './controls/ProductAmount.vue'
 
 const app = createApp(App);
 
@@ -31,4 +33,7 @@ app
   .component('CounterControl', CounterControl)
   .component('CheckboxListControl', CheckboxListControl)
   .component('InputListControl', InputListControl)
+  .component('ProductUsage', ProductUsage)
+  .component('ProductAmount', ProductAmount)
+
   .mount('#app')

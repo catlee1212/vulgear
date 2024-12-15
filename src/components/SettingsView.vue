@@ -1,25 +1,33 @@
 <template>
+  <div class="changesModal" v-if="modalIsOpen">
+    <h1>Leave without saving?</h1>
+    <div class="buttonWrapper">
+      <button class="generalButton sub" @click="handleConfirmation(fale)">
+        Cancel</button
+      ><button class="generalButton" @click="handleConfirmation(true)">
+        Leave
+      </button>
+    </div>
+  </div>
+
   <div class="outerWrapper">
     <div class="innerWrapper">
       <h1>configure your app</h1>
-
       <div class="settingsWrapper">
         <div class="innerSettings">
-          <h2>products you use</h2>
-          <label
-            class="settingsContainer"
-            v-for="product in products"
-            v-bind:key="product.productType"
-          >
-            <CheckboxListControl
-              :usedProduct="product"
-              v-model="amount.value"
-            />
-          </label>
+          <ProductUsage
+            v-model="_tempProducts"
+            @fireErrorMessage="handleFireErrorMessage"
+          />
         </div>
 
         <div class="innerSettings">
-          <h2>amount in stock</h2>
+          <ProductAmount
+            v-model="_tempProducts"
+            @fireErrorMessage="handleFireErrorMessage"
+          />
+
+          <!-- <h2>amount in stock</h2>
           <p>update here if you stock up</p>
 
           <label
@@ -31,20 +39,19 @@
               :usedProduct="product"
               @fireErrorMessage="handleFireErrorMessage"
             />
-          </label>
+          </label> -->
         </div>
       </div>
       <button
         @click="saveSettings"
-        :disabled="hasErrorMessage"
+        :disabled="hasAmountErrorMessage"
         class="generalButton"
       >
         save
       </button>
-      <!-- <button @click="getUser">get user</button> -->
     </div>
 
-    <div v-if="hasErrorMessage" class="errorElement">
+    <div v-if="hasAmountErrorMessage" class="errorElement">
       <div class="innerErrorElement">
         <span
           >Sorry, the max amount that fit's in your box is exceeded. Please use
@@ -57,11 +64,10 @@
 
 <script lang ="ts">
 import axios from "axios";
-import { computed, defineComponent, PropType, ref } from "vue";
+import { computed, defineComponent, onMounted, PropType, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
 import { onBeforeRouteLeave, onBeforeRouteUpdate } from "vue-router";
-
 import type { Product } from "../assets/interfaces";
 
 export default defineComponent({
@@ -70,19 +76,48 @@ export default defineComponent({
     usedProducts: Object as PropType<Product>,
   },
   setup() {
-    onBeforeRouteLeave((to, from) => {
-      const answer = window.confirm(
-        "Do you really want to leave? you have unsaved changes!"
-      );
-      // cancel the navigation and stay on the same page
-      if (!answer) return false;
+    const router = useRouter();
+    const store = useStore();
+    let modalIsOpen = ref(false);
+    let confirmedToLeave = ref(false);
+    let pathToNextRoute = ref("");
+
+    onMounted(() => {
+      store.dispatch("hasChanges", false);
     });
 
-    const store = useStore();
-    const products = computed(() => store.getters.usedProducts);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    onBeforeRouteLeave((to, from, next) => {
+      // save clicked path to variable
+      pathToNextRoute.value = to.fullPath;
+
+      // if there are changes made the modal opens
+      if (hasUnsavedChanges.value) {
+        modalIsOpen.value = true;
+      } else {
+        modalIsOpen.value = false;
+      }
+
+      if (modalIsOpen.value) {
+        if (confirmedToLeave.value) {
+          next();
+        } else {
+          next(false);
+        }
+      } else {
+        next();
+      }
+    });
+
     const amount = ref(0);
+
+    const _tempProducts = JSON.parse(
+      JSON.stringify(store.getters.usedProducts)
+    );
+
+    const hasUnsavedChanges = computed(() => store.getters.hasChanges);
     const maxAmount = store.getters.maxAmountStock;
-    let hasErrorMessage = ref(false);
+    let hasAmountErrorMessage = ref(false);
 
     const amountTampons = computed(
       () => store.getters.usedProducts[0].amountInStock
@@ -104,18 +139,18 @@ export default defineComponent({
 
     const saveSettings = async () => {
       const baseURL = "http://localhost:8080";
-      const productsObj = products.value;
       const userId = localStorage.getItem("userid");
-
       axios
         .patch(
           baseURL + "/products/" + userId,
-          { usedProducts: productsObj },
+          { usedProducts: _tempProducts },
           { withCredentials: true }
         )
         .then(function (response) {
           if (response.status === 200) {
             // do something here
+            store.dispatch("hasChanges", false);
+            store.dispatch("updateUsedProducts", _tempProducts);
           }
         })
         .catch(function (error) {
@@ -125,7 +160,17 @@ export default defineComponent({
     };
 
     const handleFireErrorMessage = (value: boolean) => {
-      hasErrorMessage.value = value;
+      console.log("handleFireErrorMessage in parent", value);
+      hasAmountErrorMessage.value = value;
+    };
+
+    const handleConfirmation = (isConfirmed: boolean) => {
+      confirmedToLeave.value = isConfirmed;
+      if (isConfirmed) {
+        router.push(pathToNextRoute.value);
+      } else {
+        modalIsOpen.value = false;
+      }
     };
 
     return {
@@ -138,11 +183,15 @@ export default defineComponent({
       padsAreUsed,
       cupsAreUsed,
       whipesAreUsed,
-      products,
       maxAmount,
-      hasErrorMessage,
+      hasUnsavedChanges,
+      modalIsOpen,
+      confirmedToLeave,
+      hasAmountErrorMessage,
+      _tempProducts,
       handleFireErrorMessage,
       saveSettings,
+      handleConfirmation,
     };
   },
 });

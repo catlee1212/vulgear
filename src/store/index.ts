@@ -11,7 +11,10 @@ export interface State {
   username: string,
   userid: string,
   maxAmountStock: number,
-  usedProducts: Product[]
+  usedProducts: Product[],
+  fireHasChanges: Boolean,
+  fireSupressUpdate: Boolean,
+  config: {}
 }
 
 export const store = createStore<State>({
@@ -31,8 +34,10 @@ export const store = createStore<State>({
       { productType: 'Pads', isUsed: true, amountInStock: 11, },
       { productType: 'Cups', isUsed: false, amountInStock: 12, },
       { productType: 'Whipes', isUsed: true, amountInStock: 10, },
-    ]
-
+    ],
+    fireSupressUpdate: false,
+    fireHasChanges: false,
+    config: {}
   },
   actions,
   getters,

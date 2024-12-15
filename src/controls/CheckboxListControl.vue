@@ -3,7 +3,7 @@
     class="checkbox"
     @click="updateUsage"
     type="checkbox"
-    :checked="isUsed"
+    :checked="usedProduct.isUsed"
   />
   <span class="checkmark">{{ name }}</span>
 </template>
@@ -16,26 +16,24 @@ import { PropType } from "vue";
 
 export default defineComponent({
   name: "CheckboxListControl",
+  emits: ["update:modelValue", "fireErrorMessage"],
   props: {
     usedProduct: Object as PropType<Product>,
   },
 
   setup(props) {
     const store = useStore();
-    let usedProduct = props.usedProduct;
+    const usedProduct = props.usedProduct;
 
-    const isUsed = computed(() => usedProduct.isUsed);
+    // const isUsed = computed(() => usedProduct.isUsed);
     const name = usedProduct.productType;
 
-    const updateUsage = () => {
-      store.dispatch("updateUsage", {
-        isUsed: usedProduct.isUsed,
-        productType: usedProduct.productType,
-      });
+    const updateUsage = (event: Event): void => {
+      store.dispatch("hasChanges", true);
+      usedProduct.isUsed = (event.target as HTMLInputElement).checked;
     };
     return {
       name,
-      isUsed,
       updateUsage,
     };
   },
