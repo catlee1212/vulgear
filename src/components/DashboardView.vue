@@ -11,6 +11,7 @@
             :usedProducts="this.$store.getters.usedProducts"
             productType="Tampons"
           />
+
           <CounterControl
             id="second"
             :usedProducts="this.$store.getters.usedProducts"
