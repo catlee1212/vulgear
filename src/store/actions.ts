@@ -4,8 +4,6 @@ import axios from "axios";
 
 // actions: can contain asyncronous operations
 const fetchConfig = async ({ commit }: { commit: Commit }) => {
-  console.log("fetching");
-
   const userId = localStorage.getItem("userid");
   await axios
     .get(import.meta.env.VITE_API_URL + "/user/" + userId, { withCredentials: true })
@@ -30,7 +28,6 @@ const saveUserId = ({ commit }: { commit: Commit }, userId: string) => {
 }
 
 const updateUsedProducts = ({ commit }: { commit: Commit }, usedProducts: string) => {
-  console.log(usedProducts)
   commit('UPDATE_USED_PRODUCTS', usedProducts);
 }
 
